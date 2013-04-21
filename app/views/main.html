@@ -1,9 +1,13 @@
 <div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
+  <h4>'Allo, 'Allo!</h4>
   <p>You now have</p>
-  <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
-  </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
+
+  <div class="fluid-container">
+  	<div class="row-fluid" ng-repeat="account in data">
+  		<div class="span3">{{account.name}}
+  			<small>{{account.amt}}</small>
+  		</div>
+  	</div>
+  </div>
 </div>
+
