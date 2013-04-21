@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('angpockApp', [])
+angular.module('pocketMoneyApp', [])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'AccountCtrl'
       })
       .otherwise({
         redirectTo: '/'
