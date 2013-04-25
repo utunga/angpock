@@ -1,22 +1,22 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: AccountController', function () {
 
   // load the controller's module
-  beforeEach(module('angpockApp'));
+  beforeEach(module('pocketMoneyApp'));
 
-  var MainCtrl,
+  var AccountController,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    AccountController = $controller('AccountController', {
       $scope: scope
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+  it('should attach a list of account data to the scope', function () {
+    expect(scope.accounts.length).toBe(3);
   });
 });

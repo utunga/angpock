@@ -3,18 +3,29 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+
+
+<html ng-app="pocketMoneyApp">
+  
+  <head lang="en">
+   <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Angular Mobile Nav</title>
+    <link rel="stylesheet" href="content/iui.css">
+    <link rel="stylesheet" href="content/iui/default-theme.css" type="text/css"/>
+
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+
+    <link rel="stylesheet" href="components/angular-mobile-nav/demo/content/iui.css">
+    <link rel="stylesheet" href="components/angular-mobile-nav/dist/mobile-nav.css">
+    <link rel="stylesheet" href="styles/main.css">  
+
     <!-- endbuild -->
   </head>
-  <body ng-app="pocketMoneyApp">
+  <body ng-controller="AccountController">
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
@@ -25,15 +36,25 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view></div>
+    <div class="container">
+     <mobile-view></mobile-view>
+  
+    <div id="test"  style="height:200px;"></div>
+    </div>
+
+
     <script src="components/angular/angular.js"></script>
     <script src="components/angular-resource/angular-resource.js"></script>
     <script src="components/angular-cookies/angular-cookies.js"></script>
     <script src="components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="components/angular-ui-custom/angular-ui.js"></script>
+    <script src="components/angular-mobile-nav/dist/mobile-nav.js"></script>
+    <script src="components/flot/jquery.js"></script>
+    <script src="components/flot/jquery.flot.js"></script>
+    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="components/flot/excanvas.min.js"></script><![endif]-->
 
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/account.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

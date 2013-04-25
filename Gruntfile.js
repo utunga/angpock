@@ -282,7 +282,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'jshint',
+    //'jshint',
     'test',
     'coffee',
     'compass:dist',
@@ -298,6 +298,8 @@ module.exports = function (grunt) {
     'rev',
     'usemin'
   ]);
+
+  grunt.registerTask('lint', ['jshint']);
 
   grunt.registerTask('default', ['build']);
 };
