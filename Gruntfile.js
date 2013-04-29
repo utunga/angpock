@@ -47,7 +47,8 @@ module.exports = function (grunt) {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost'
+        // 127.0.0.1 will limit to localhost only
+        hostname: '0.0.0.0' 
       },
       livereload: {
         options: {
@@ -126,18 +127,19 @@ module.exports = function (grunt) {
     },
     compass: {
       options: {
+        require: 'zurb-foundation',
         sassDir: '<%= yeoman.app %>/styles',
         cssDir: '.tmp/styles',
         imagesDir: '<%= yeoman.app %>/images',
         javascriptsDir: '<%= yeoman.app %>/scripts',
-        fontsDir: '<%= yeoman.app %>/styles/fonts',
+        fontsDir: '<%= yeoman.app %>/fonts',
         importPath: '<%= yeoman.app %>/components',
         relativeAssets: true
       },
       dist: {},
       server: {
         options: {
-          debugInfo: true
+          debugInfo: false
         }
       }
     },

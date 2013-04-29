@@ -1,31 +1,27 @@
+
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 
+<head>
 
-<html ng-app="pocketMoneyApp">
+ <html ng-app="pocketMoneyApp">
   
   <head lang="en">
    <meta charset="utf-8">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Angular Mobile Nav</title>
-    <link rel="stylesheet" href="content/iui.css">
-    <link rel="stylesheet" href="content/iui/default-theme.css" type="text/css"/>
+    <script src="scripts/vendor/custom.modernizr.js"></script>
+    <title>Pocket Money</title>
 
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css styles/main.css -->
-
-    <link rel="stylesheet" href="components/angular-mobile-nav/demo/content/iui.css">
-    <link rel="stylesheet" href="components/angular-mobile-nav/dist/mobile-nav.css">
-    <link rel="stylesheet" href="styles/main.css">  
-
-    <!-- endbuild -->
-  </head>
-  <body ng-controller="AccountController">
+  	<link href="styles/normalize.css" media="screen, projector, print" rel="stylesheet" type="text/css" />
+    <link href="styles/app.css" media="screen, projector, print" rel="stylesheet" type="text/css" />
+ 	<link rel="stylesheet" href="components/angular-mobile-nav/dist/mobile-nav.css">
+</head>
+<body>
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
@@ -35,13 +31,23 @@
       <script src="components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="container">
-     <mobile-view></mobile-view>
-  
-    <div id="test"  style="height:200px;"></div>
-    </div>
-
+ <!-- Add your site or application content here -->
+    <nav class="top-bar">
+		<ul class="title-area">
+			<!-- Title Area -->
+			<li class="name">
+				<h1>
+					<a href="#">Pocket Money</a>
+				</h1>
+			</li>
+			<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+			<li class="toggle-topbar" style="color:white;" >
+				<i class="general foundicon-settings"></i>
+			</li>
+		</ul>
+	</nav>
+	<ng-view></ng-view>
+	
 
     <script src="components/angular/angular.js"></script>
     <script src="components/angular-resource/angular-resource.js"></script>
@@ -57,7 +63,32 @@
     <script src="scripts/app.js"></script>
     <!-- endbuild -->
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+	<script>
+		document.write('<script src=' +
+		('__proto__' in {} ? 'scripts/vendor/zepto' : 'scripts/vendor/jquery') +
+		'.js><\/script>')
+	</script>
+
+
+	<script src="scripts/foundation/foundation.js"></script>
+	<script src="scripts/foundation/foundation.alerts.js"></script>
+	<script src="scripts/foundation/foundation.clearing.js"></script>
+	<script src="scripts/foundation/foundation.cookie.js"></script>
+	<script src="scripts/foundation/foundation.dropdown.js"></script>
+	<script src="scripts/foundation/foundation.forms.js"></script>
+	<script src="scripts/foundation/foundation.joyride.js"></script>
+	<script src="scripts/foundation/foundation.magellan.js"></script>
+	<script src="scripts/foundation/foundation.orbit.js"></script>
+	<script src="scripts/foundation/foundation.placeholder.js"></script>
+	<script src="scripts/foundation/foundation.reveal.js"></script>
+	<script src="scripts/foundation/foundation.section.js"></script>
+	<script src="scripts/foundation/foundation.tooltips.js"></script>
+	<script src="scripts/foundation/foundation.topbar.js"></script>
+	
+  
+	<script>
+	$(document).foundation();
+	</script>
     <script>
       var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
       (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];

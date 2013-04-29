@@ -16,78 +16,59 @@
 
 var app = angular.module('pocketMoneyApp', ['mobile-navigate'])
 .config(function($routeProvider) {
-  $routeProvider.when("/one", {
-    templateUrl: "content/page1.html"
-  }).when("/two", {
-    templateUrl: "content/page2.html",
-    transition: "modal" //this is overwritten by the go() in home.html
-  }).when("/popup", {
-    templateUrl: "content/popup.html",
-    transition: "modal"
-  }).when("/monkey", {
-    templateUrl: "content/monkey.html"
-  }).when("/backwards", {
-    templateUrl: "content/backwards.html",
-    reverse: true
+  $routeProvider.when("/acc/:account_id", {
+    templateUrl: "content/account.html",
+    controller: "AccountController"
   }).when("/", {
-    templateUrl: "content/home.html"
+    templateUrl: "content/list.html",
+    controller: "AccountController"
   }).otherwise({
     redirectTo: "/"
   });
-})
-.run(function($route, $http, $templateCache) {
-  angular.forEach($route.routes, function(r) {
-    if (r.templateUrl) {
-      $http.get(r.templateUrl, {cache: $templateCache});
-    }
-  });
-})
-.controller('AccountController', function($scope, $navigate) {
-  $scope.$navigate = $navigate;
+});
+// .run(function($route, $http, $templateCache) {
+//   angular.forEach($route.routes, function(r) {
+//     if (r.templateUrl) {
+//       $http.get(r.templateUrl, {cache: $templateCache});
+//     }
+//   });
+// })
 
-  
-  $scope.balance = function (account) {
-    var bal = 0;
-    for (var i = 0; i < account.entries.length; i++) {
-      bal = bal + account.entries[i].amt;
-    }
-    return bal;
-  };
-  
-  $scope.add = function(account) {
-    account.entries.push({type:"paid",amt:2});
-  };
-
-  $scope.graphData = function(account) {
-    var data = []
-    if (account.entries)
+app.controller('AccountController', ['$scope', '$routeParams', '$navigate', 'accounts',
+  function($scope, $routeParams, $navigate, accounts) {
+    $scope.$navigate = $navigate;
+    
+    $scope.accounts = accounts.getItems();
+    if ($routeParams.account_id) 
     {
-      for (var i = 0; i < account.entries.length; i++) {
-        data.push[i, account.entries[i].amt]
-      }
-    } 
-  };
-
-  $scope.accounts = [
-    {name: "Baxter",
-     type: "moneyowed",
-     entries : [{type:"init",amt:1},
-              {type:"paid",amt:10},
-              {type:"paid",amt:-3},
-              {type:"paid",amt:5},
-              {type:"paid",amt:-7}]
-    },
-    {name: "Ezra",
-     type: "moneyowed",
-     entries : [{type:"init",amt:3},{type:"init",amt:3},{type:"init",amt:3}]
-    },
-    {name: "Noah",
-     type: "moneyowed",
-     entries : [{type:"init",amt:1},{type:"init",amt:-3},{type:"init",amt:3}]
+      $scope.account = accounts.getItem($routeParams.account_id);
     }
-  ];
-})
-.directive('ngTap', function() {
+
+    $scope.balance = function (account) {
+      var bal = 0;
+      for (var i = 0; i < account.entries.length; i++) {
+        bal = bal + account.entries[i].amt;
+      }
+      return bal;
+    };
+    
+    $scope.add = function(account) {
+      account.entries.push({type:"paid",amt:2});
+    };
+
+    $scope.graphData = function(account) {
+      var data = []
+      if (account.entries)
+      {
+        for (var i = 0; i < account.entries.length; i++) {
+          data.push[i, account.entries[i].amt]
+        }
+      } 
+    };
+
+  }]);
+
+app.directive('ngTap', function() {
   var isTouchDevice = !!("ontouchstart" in window);
   return function(scope, elm, attrs) {
     if (isTouchDevice) {
@@ -102,10 +83,8 @@ var app = angular.module('pocketMoneyApp', ['mobile-navigate'])
       });
     }
   };
-});
-
-
-app.directive('pockGraph', function() {
+})
+.directive('pockGraph', function() {
     return function(scope, element, attr) {
        var d0 = [];
        var account = scope.account;
@@ -130,3 +109,42 @@ app.directive('pockGraph', function() {
   }
 );
 
+
+app.service('accounts', ['$http', function($http) {
+
+  this.getItem = function(id) {
+    var ret = {};
+    angular.forEach( accounts, function(account) {
+      if (account.id == id) 
+        ret = account;
+    });
+    return ret;
+  };
+
+  this.getItems = function() {
+    return accounts;
+  }
+
+  var accounts = [
+      {id: 0,
+       name: "Baxter",
+       type: "moneyowed",
+       entries : [{type:"init",amt:1},
+                {type:"paid",amt:10},
+                {type:"paid",amt:-3},
+                {type:"paid",amt:5},
+                {type:"paid",amt:-7}]
+      },
+      {id: 1,
+        name: "Ezra",
+       type: "moneyowed",
+       entries : [{type:"init",amt:3},{type:"init",amt:3},{type:"init",amt:3}]
+      },
+      {id:2,
+        name: "Noah",
+       type: "moneyowed",
+       entries : [{type:"init",amt:1},{type:"init",amt:-3},{type:"init",amt:3}]
+      }
+    ];
+
+}]);
